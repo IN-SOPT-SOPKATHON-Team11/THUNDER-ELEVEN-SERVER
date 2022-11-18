@@ -1,0 +1,20 @@
+{
+  "name": "THUNDER-ELEVEN-SERVER",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/IN-SOPT-SOPKATHON-Team11/THUNDER-ELEVEN-SERVER.git",
+  "author": "<ho723@naver.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc && node dist"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "nodemon": "^2.0.20"
+  }
+}
