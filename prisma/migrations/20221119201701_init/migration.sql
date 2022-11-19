@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "id" SERIAL NOT NULL,
     "nickname" VARCHAR(100) NOT NULL,
     "password" VARCHAR(100) NOT NULL,
 
@@ -9,20 +9,20 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Impression" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "id" SERIAL NOT NULL,
     "type" INTEGER NOT NULL,
-    "timestamp" DATE NOT NULL,
+    "timestamp" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "comment" TEXT,
-    "receiverId" UUID NOT NULL,
-    "senderId" UUID NOT NULL,
-    "animalId" UUID NOT NULL,
+    "receiverId" INTEGER NOT NULL,
+    "senderId" INTEGER NOT NULL,
+    "animalId" INTEGER NOT NULL,
 
     CONSTRAINT "Impression_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Animal" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "id" SERIAL NOT NULL,
     "name" VARCHAR(100) NOT NULL,
 
     CONSTRAINT "Animal_pkey" PRIMARY KEY ("id")
@@ -30,7 +30,7 @@ CREATE TABLE "Animal" (
 
 -- CreateTable
 CREATE TABLE "Tag" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "id" SERIAL NOT NULL,
     "name" VARCHAR(100) NOT NULL,
 
     CONSTRAINT "Tag_pkey" PRIMARY KEY ("id")
@@ -38,12 +38,21 @@ CREATE TABLE "Tag" (
 
 -- CreateTable
 CREATE TABLE "ImpressionTag" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "impressionId" UUID NOT NULL,
-    "tagId" UUID NOT NULL,
+    "id" SERIAL NOT NULL,
+    "impressionId" INTEGER NOT NULL,
+    "tagId" INTEGER NOT NULL,
 
     CONSTRAINT "ImpressionTag_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_nickname_key" ON "User"("nickname");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Animal_name_key" ON "Animal"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
 
 -- AddForeignKey
 ALTER TABLE "Impression" ADD CONSTRAINT "Impression_receiverId_fkey" FOREIGN KEY ("receiverId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id                 String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                 Int          @id() @default(autoincrement())
   nickname           String       @unique @db.VarChar(100)
   password           String       @db.VarChar(100)
   receiveImpressions Impression[] @relation("receiveImpressions")
@@ -19,35 +19,35 @@ model User {
 }
 
 model Impression {
-  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id            Int             @id() @default(autoincrement())
   type          Int
-  timestamp     DateTime        @db.Date
+  timestamp     DateTime        @default(now()) @db.Date
   comment       String?
   receiver      User            @relation("receiveImpressions", fields: [receiverId], references: [id])
-  receiverId    String          @db.Uuid
+  receiverId    Int
   sender        User            @relation("sendImpressions", fields: [senderId], references: [id])
-  senderId      String          @db.Uuid
+  senderId      Int
   animal        Animal          @relation(fields: [animalId], references: [id])
-  animalId      String          @db.Uuid
+  animalId      Int
   ImpressionTag ImpressionTag[]
 }
 
 model Animal {
-  id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name       String       @db.VarChar(100)
+  id         Int          @id() @default(autoincrement())
+  name       String       @unique @db.VarChar(100)
   Impression Impression[]
 }
 
 model Tag {
-  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name          String          @db.VarChar(100)
+  id            Int             @id() @default(autoincrement())
+  name          String          @unique @db.VarChar(100)
   ImpressionTag ImpressionTag[]
 }
 
 model ImpressionTag {
-  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id           Int        @id() @default(autoincrement())
   impression   Impression @relation(fields: [impressionId], references: [id])
-  impressionId String     @db.Uuid
+  impressionId Int
   tag          Tag        @relation(fields: [tagId], references: [id])
-  tagId        String     @db.Uuid
+  tagId        Int
 }
