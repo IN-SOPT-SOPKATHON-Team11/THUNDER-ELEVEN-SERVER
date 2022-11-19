@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nickname           String       @unique @db.VarChar(100)
+  password           String       @db.VarChar(100)
+  receiveImpressions Impression[] @relation("receiveImpressions")
+  sendImpressions    Impression[] @relation("sendImpressions")
+}
+
+model Impression {
+  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type          Int
+  timestamp     DateTime        @db.Date
+  comment       String?
+  receiver      User            @relation("receiveImpressions", fields: [receiverId], references: [id])
+  receiverId    String          @db.Uuid
+  sender        User            @relation("sendImpressions", fields: [senderId], references: [id])
+  senderId      String          @db.Uuid
+  animal        Animal          @relation(fields: [animalId], references: [id])
+  animalId      String          @db.Uuid
+  ImpressionTag ImpressionTag[]
+}
+
+model Animal {
+  id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String       @db.VarChar(100)
+  Impression Impression[]
+}
+
+model Tag {
+  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String          @db.VarChar(100)
+  ImpressionTag ImpressionTag[]
+}
+
+model ImpressionTag {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  impression   Impression @relation(fields: [impressionId], references: [id])
+  impressionId String     @db.Uuid
+  tag          Tag        @relation(fields: [tagId], references: [id])
+  tagId        String     @db.Uuid
+}
