@@ -63,6 +63,7 @@ Git flow
 <img src="https://user-images.githubusercontent.com/82032418/202871676-9119d876-e02f-4083-9387-5c509fb71137.png" width="80%">
 
 ## server architecture
+![제목 없는 다이어그램 drawio (5)](https://user-images.githubusercontent.com/63651422/202872251-8cd9daaf-56a0-4a4e-aaa6-33edb4a747f4.png)
 
 
 
