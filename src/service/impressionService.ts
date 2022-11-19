@@ -42,7 +42,7 @@ const createImpression = async (
   type: number,
   comment: string
 ) => {
-  const result = await prisma.impression.create({
+  const impResult = await prisma.impression.create({
     data: {
       senderId: senderId,
       receiverId: receiverId,
@@ -51,8 +51,18 @@ const createImpression = async (
       comment: comment,
     },
   });
-  console.log(result);
-  return result;
+
+  for (let i = 0; i < TagIds.length; i++) {
+    let temp = await prisma.impressionTag.create({
+      data: {
+        impressionId: impResult.id,
+        tagId: TagIds[i],
+      },
+    });
+    console.log(temp);
+  }
+
+  return impResult;
 };
 
 const impressionService = {
