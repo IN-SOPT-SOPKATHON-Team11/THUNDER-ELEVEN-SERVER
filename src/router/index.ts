@@ -6,7 +6,7 @@ import logRouter from "./logRouter";
 const router: Router = Router();
 
 router.use("/auth", authRouter);
-router.use("/impression", impressionRouter);
+router.use("/impressions", impressionRouter);
 router.use("/logs", logRouter);
 
 export default router;
