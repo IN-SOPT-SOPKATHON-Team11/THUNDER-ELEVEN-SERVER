@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Impression" ALTER COLUMN "timestamp" SET DEFAULT CURRENT_TIMESTAMP;
