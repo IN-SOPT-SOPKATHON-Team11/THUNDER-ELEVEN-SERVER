@@ -21,7 +21,7 @@ model User {
 model Impression {
   id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   type          Int
-  timestamp     DateTime        @db.Date
+  timestamp     DateTime        @default(now()) @db.Date
   comment       String?
   receiver      User            @relation("receiveImpressions", fields: [receiverId], references: [id])
   receiverId    String          @db.Uuid
