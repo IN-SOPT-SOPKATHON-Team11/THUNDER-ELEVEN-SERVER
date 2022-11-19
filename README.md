@@ -1,4 +1,5 @@
 # THUNDER-ELEVEN-SERVER
+# 1차 과제
 ## 서비스 개요
 🔔 서비스명 : 그래미(그래 이게 나야)  
 🔔 서비스 한줄소개 : 태그로 보는 우리들의 인상
@@ -49,3 +50,19 @@ Git flow
 ├── tsconfig.json
 └── yarn.lock
 ```
+
+# 2차과제
+## ERD
+<img src="https://user-images.githubusercontent.com/82032418/202871747-b258f8ab-28a4-4d9d-b268-911b23d678dd.png" width="70%">
+
+## schema.prisma
+<img src="https://user-images.githubusercontent.com/82032418/202871699-1e36a16a-71ca-4e8d-ae8b-29c3bf06ccbf.png" width="70%">
+<img src="https://user-images.githubusercontent.com/82032418/202871723-dd36023a-5a55-4953-a907-d62663f7bb88.png" width="60%">
+
+## package.json
+<img src="https://user-images.githubusercontent.com/82032418/202871676-9119d876-e02f-4083-9387-5c509fb71137.png" width="80%">
+
+## server architecture
+
+
+
