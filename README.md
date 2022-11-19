@@ -53,7 +53,7 @@ Git flow
 
 # 2차과제
 ## ERD
-<img src="https://user-images.githubusercontent.com/82032418/202871747-b258f8ab-28a4-4d9d-b268-911b23d678dd.png" width="70%">
+<img src="https://user-images.githubusercontent.com/82032418/202871747-b258f8ab-28a4-4d9d-b268-911b23d678dd.png" width="80%">
 
 ## schema.prisma
 <img src="https://user-images.githubusercontent.com/82032418/202871699-1e36a16a-71ca-4e8d-ae8b-29c3bf06ccbf.png" width="70%">
